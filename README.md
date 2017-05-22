@@ -1,6 +1,6 @@
-# vue-button
+# vue-button (tutorial)
 
-> A Vue.js project
+> Source files for creating a vue-button component.
 
 ## Build Setup
 

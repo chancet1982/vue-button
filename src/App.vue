@@ -1,17 +1,22 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <button>some content</button>
+    <h1>Some examples of v-buttons and its current features</h1>
+	<div>
+		<v-button>Button with added CSS classes</v-button>
+    	<v-button css-classes="primary">Button with added CSS classes</v-button>
+    	<v-button css-classes="info" :throttled="true">Throttled button (default cooldown)</v-button>
+    	<v-button css-classes="danger" :throttled="true" :cooldown="2000">Throttled button (longer cooldown)</v-button>
+	</div>
   </div>
 </template>
 
 <script>
-import button from './components/Button'
+import button from './components/Button/Button.vue'
 
 export default {
   name: 'app',
   components: {
-    button
+    'v-button':button
   }
 }
 </script>
