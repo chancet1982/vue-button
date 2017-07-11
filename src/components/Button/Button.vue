@@ -1,5 +1,5 @@
 <template>
-	<button :class="['button', {'disabled': btnDisabled}, cssClasses]" @click='onClickHandler' :disabled='btnDisabled'>
+	<button :style="styleObject" :class="['button', {'disabled': btnDisabled}, cssClasses]" @click='onClickHandler' :disabled='btnDisabled'>
 		<main v-if='!btnDisabled'>
 			<slot>button</slot>
 		</main>
@@ -35,7 +35,7 @@ export default {
 		required: false,
 		default: false,
 	},
-	cooldown: {
+	cooldown: { //TODO add animation when button is cooling down.
 		type: Number,
 		required: false,
         default: 300,
@@ -58,10 +58,23 @@ export default {
 	  	}, this.cooldown);
 	  }
 	},
+	/*createRegularExpression(){
+		let pattern = '(?:\w+\s)?' + this.allowedClasses.map((value, index, arr)=>{
+			return "(" + value + ")" + (index < arr.length) ?  '\s(?:\w+\s)?': \s?(?:\w+\s)?;
+		});
+		console.log("(?:\w+\s)?(allowed)\s(?:\w+\s)?(alsoAllowed)\s(?:\w+\s)?(evenThisIsAllowed)\s?(?:\w+\s)?");
+		console.log(pattern);
+		return new RegExp(pattern, "g");
+	},*/
   },
   data(){
 	return {
+		styleObject: {
+			font-size: this.size;
+			line-height: this.size;
+		},
 		btnDisabled: this.disabled
+		allowedClasses: ['allowed', 'alsoAllowed', 'evenThisIsAllowed'];
 	}
   },
 };
@@ -72,8 +85,6 @@ $border-radius: 5px;
 $base-size: 32px;
 $base-color: #333;
 $base-padding: 20px;
-$base-font-size: 1em;
-$base-line-height: (1.2 * $base-font-size);
 $disabled-bg: lighten($base-color, 75%);
 $disabled-text: lighten($base-color, 25%);
 $btn-text-dark: #333;
@@ -89,8 +100,8 @@ $btn-link-bg: transparent;
 
 .button {
 	display: inline-block;
-	font-size: $base-font-size;
-	line-height: $base-line-height;
+	/*font-size: $base-font-size;
+	line-height: $base-line-height;*/
 	text-align: center;
 	border: none;
 	border-radius: $border-radius;
